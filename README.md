@@ -118,13 +118,28 @@ O sistema deve calcular o que é favorável em relação aos gastos e lucros que
 | preco\_praticado | Preço cobrado pelo concorrente. | Obrigatório é maior que zero. |
 | data\_coleta | Data em que o preço foi coletado. | Obrigatório. |
 | fonte | Origem da informação, como site ou cardápio. | Obrigatório. |
-| **5\. Entidade: Margem de Lucro** |  |  |
+**5\. Entidade: Pizza do Concorrente** |  |  |
+| Atributo | Descrição | Identificação |
+|---|---|---|
+| id_pizza_concorrente | Identificador único da pizza comercializada pelo concorrente. | PK |
+| id_concorrente | Identifica o concorrente ao qual a pizza pertence. | FK |
+| nome | Nome da pizza do concorrente. | — |
+| descricao | Descrição dos ingredientes ou características da pizza. | — |
+| **6\. Entidade: Margem de Lucro** |  |  |
 | **Atributo** | **Descrição** | **Regra de negócio associada** |
 | id\_margem (PK) | Identificador da configuração de margem. | Obrigatório e único. |
 | percentual\_margem | Percentual de lucro desejado. | Obrigatório é maior que zero. |
 | data\_inicio | Data de início da aplicação da margem. | Obrigatório. |
 | data\_fim | Data de término da aplicação da margem. | Opcional. |
 | status | Indica se a margem está ativa ou inativa. | Apenas margens ativas são utilizadas. |
+**7\. Entidade: Histórico de Preço** |  |  |
+| **Atributo** | **Descrição** | **Regra de negócio associada** |
+| id_historico | Identificador único do registro de histórico de preço. | PK |
+| id_pizza_concorrente | Identifica a pizza do concorrente cujo preço foi registrado. | FK |
+| preco_praticado | Valor do preço praticado pelo concorrente no momento da coleta. | — |
+| data_coleta | Data em que o preço da pizza foi coletado ou registrado. | — |
+| fonte | Origem da informação utilizada para obter o preço. | — |
+
 
 ---
 
