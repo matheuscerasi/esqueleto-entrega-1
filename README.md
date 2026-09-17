@@ -120,7 +120,6 @@ O sistema deve calcular o que é favorável em relação aos gastos e lucros que
 | fonte | Origem da informação, como site ou cardápio. | Obrigatório. |
 **5\. Entidade: Pizza do Concorrente** |  |  |
 | Atributo | Descrição | Identificação |
-|---|---|---|
 | id_pizza_concorrente | Identificador único da pizza comercializada pelo concorrente. | PK |
 | id_concorrente | Identifica o concorrente ao qual a pizza pertence. | FK |
 | nome | Nome da pizza do concorrente. | — |
