@@ -1,9 +1,6 @@
 # Entrega 1 — Modelo Conceitual (DER)
 
-Matheus Cerasi Rodrigues
-Eduardo Correa
-Ryan Mangeth de Lima
-Igor Hideki Sakurata
+Matheus Cerasi Rodrigues - Eduardo Correa - Ryan Mangeth de Lima - Igor Hideki Sakurata
 ### Modelagem de um sistema de gestão de informações para uma organização de pequeno porte
 
 > Este arquivo é o esqueleto do **README.md** do repositório GitHub do seu grupo. Preencha cada seção abaixo. Não apague os títulos — apenas substitua as instruções em *itálico* pelo conteúdo do seu projeto. O **DER** é anexado separadamente ao repositório (em imagem), mas sua justificativa entra neste README.  
