@@ -52,7 +52,27 @@ Matheus Cerasi Rodrigues - Eduardo Correa - Ryan Mangeth de Lima - Igor Hideki S
 
 ### 3.1 Requisitos Funcionais
 
-O sistema deve calcular o que é favorável em relação aos gastos e lucros que a empresa tem. 
+**Cadastro de produtos:** O sistema deve permitir cadastrar, editar, excluir e consultar as pizzas, contendo informações como nome, categoria, ingredientes e preço de venda.
+
+**Cadastro de ingredientes:** O sistema deve permitir cadastrar os ingredientes utilizados nas pizzas, seus custos e unidades de medida.
+
+**Cadastro de custos:** O sistema deve permitir registrar os custos fixos, como aluguel e salários, e os custos variáveis, como matéria-prima e impostos.
+
+**Cálculo dos custos:** O sistema deve calcular o custo de cada pizza com base nos ingredientes utilizados e nos demais custos envolvidos.
+
+**Definição da margem de lucro:** O sistema deve permitir cadastrar e alterar a margem de lucro desejada para os produtos.
+
+**Cálculo do preço de venda:** O sistema deve calcular um preço de venda sugerido considerando os custos e a margem de lucro definida.
+
+**Análise da concorrência:** O sistema deve permitir cadastrar os concorrentes e registrar os preços praticados por eles para realizar comparações.
+
+**Análise da percepção de valor:** O sistema deve permitir registrar informações que auxiliem na avaliação do quanto o cliente está disposto a pagar, considerando a qualidade e os benefícios oferecidos.
+
+**Ajuste e aprovação do preço:** O sistema deve permitir analisar o preço sugerido e realizar ajustes quando ele não for considerado adequado aos custos, à concorrência ou à percepção de valor.
+
+**Atualização das informações:** O sistema deve permitir atualizar custos, preços, margens de lucro e informações dos concorrentes sempre que necessário.
+
+**Geração de relatórios:** O sistema deve gerar relatórios com informações sobre custos, preços, margens de lucro, concorrência e rentabilidade, auxiliando na tomada de decisões da pizzaria. 
 
 ### 3.2 Requisitos Não Funcionais
 
