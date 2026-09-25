@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Dicionário de Dados</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            width: 90%;
+            max-width: 1000px;
+            margin: 30px auto;
+            background: #f2f2f2;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 19px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            margin-bottom: 25px;
+        }
+
+        th, td {
+            border: 1px solid #999;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background: #333;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>5. Dicionário de Dados Conceitual (Preliminar)</h1>
+
+<h2>Produto (Pizza)</h2>
+<table>
+    <tr>
+        <th>Atributo</th>
+        <th>Descrição</th>
+        <th>Regra</th>
+    </tr>
+    <tr>
+        <td>id_pizza (PK)</td>
+        <td>Identificador único da pizza.</td>
+        <td>Obrigatório e único.</td>
+    </tr>
+    <tr>
+        <td>nome</td>
+        <td>Nome da pizza.</td>
+        <td>Obrigatório.</td>
+    </tr>
+    <tr>
+        <td>descricao</td>
+        <td>Descrição dos ingredientes da pizza.</td>
+        <td>Obrigatório.</td>
+    </tr>
+    <tr>
+        <td>preco_venda</td>
+        <td>Preço de venda da pizza.</td>
+        <td>Obrigatório e maior que zero.</td>
+    </tr>
+</table>
+
+<h2>Custo Fixo</h2>
+<table>
+    <tr>
+        <th>Atributo</th>
+        <th>Descrição</th>
+        <th>Regra</th>
+    </tr>
+    <tr>
+        <td>id_custo_fixo (PK)</td>
+        <td>Identificador único do custo.</td>
+        <td>Obrigatório e único.</td>
+    </tr>
+    <tr>
+        <td>descricao</td>
+        <td>Descrição do custo, como aluguel ou salário.</td>
+        <td>Obrigatório.</td>
+    </tr>
+    <tr>
+        <td>valor_mensal</td>
+        <td>Valor mensal do custo fixo.</td>
+        <td>Obrigatório e maior ou igual a zero.</td>
+    </tr>
+    <tr>
+        <td>data_inicio</td>
+        <td>Data em que o custo começou.</td>
+        <td>Obrigatório.</td>
+    </tr>
+    <tr>
+        <td>status</td>
+        <td>Indica se o custo está ativo ou inativo.</td>
+        <td>Apenas custos ativos entram nos cálculos.</td>
+    </tr>
+</table>
+
+<h2>Custo Variável (Ingrediente)</h2>
+<table>
+    <tr>
+        <th>Atributo</th>
+        <th>Descrição</th>
+        <th>Regra</th>
+    </tr>
+    <tr>
+        <td>id_ingrediente (PK)</td>
+        <td>Identificador único do ingrediente.</td>
+        <td>Obrigatório e único.</td>
+    </tr>
+    <tr>
+        <td>nome</td>
+        <td>Nome do ingrediente.</td>
+        <td>Obrigatório.</td>
+    </tr>
+    <tr>
+        <td>unidade_medida</td>
+        <td>Unidade utilizada, como kg, g ou unidade.</td>
+        <td>Obrigatório.</td>
+    </tr>
+    <tr>
+        <td>custo_unitario</td>
+        <td>Custo de cada unidade do ingrediente.</td>
+        <td>Obrigatório e maior que zero.</td>
+    </tr>
+    <tr>
+        <td>fornecedor</td>
+        <td>Fornecedor do ingrediente.</td>
+        <td>Opcional.</td>
+    </tr>
+    <tr>
+        <td>data_atualizacao</td>
+        <td>Data da última atualização do custo.</td>
+        <td>Obrigatório.</td>
+    </tr>
+</table>
+
+<h2>Concorrente</h2>
+<table>
+    <tr>
+        <th>Atributo</th>
+        <th>Descrição</th>
+        <th>Regra</th>
+    </tr>
+    <tr>
+        <td>id_concorrente (PK)</td>
+        <td>Identificador único do concorrente.</td>
+        <td>Obrigatório e único.</td>
+    </tr>
+    <tr>
+        <td>nome</td>
+        <td>Nome da pizzaria concorrente.</td>
+        <td>Obrigatório.</td>
+    </tr>
+    <tr>
+        <td>pizza_referencia</td>
+        <td>Pizza utilizada para comparação.</td>
+        <td>Obrigatório.</td>
+    </tr>
+    <tr>
+        <td>preco_praticado</td>
+        <td>Preço cobrado pelo concorrente.</td>
+        <td>Obrigatório e maior que zero.</td>
+    </tr>
+    <tr>
+        <td>data_coleta</td>
+        <td>Data em que o preço foi coletado.</td>
+        <td>Obrigatório.</td>
+    </tr>
+    <tr>
+        <td>fonte</td>
+        <td>Origem da informação, como site ou cardápio.</td>
+        <td>Obrigatório.</td>
+    </tr>
+</table>
+
+<h2>Pizza do Concorrente</h2>
+<table>
+    <tr>
+        <th>Atributo</th>
+        <th>Descrição</th>
+        <th>Regra</th>
+    </tr>
+    <tr>
+        <td>id_pizza_concorrente (PK)</td>
+        <td>Identificador único da pizza comercializada pelo concorrente.</td>
+        <td>Obrigatório e único.</td>
+    </tr>
+    <tr>
+        <td>id_concorrente (FK)</td>
+        <td>Identifica o concorrente ao qual a pizza pertence.</td>
+        <td>Obrigatório.</td>
+    </tr>
+    <tr>
+        <td>nome</td>
+        <td>Nome da pizza do concorrente.</td>
+        <td>Obrigatório.</td>
+    </tr>
+    <tr>
+        <td>descricao</td>
+        <td>Descrição dos ingredientes ou características da pizza.</td>
+        <td>Opcional.</td>
+    </tr>
+</table>
+
+<h2>Margem de Lucro</h2>
+<table>
+    <tr>
+        <th>Atributo</th>
+        <th>Descrição</th>
+        <th>Regra</th>
+    </tr>
+    <tr>
+        <td>id_margem (PK)</td>
+        <td>Identificador da configuração de margem.</td>
+        <td>Obrigatório e único.</td>
+    </tr>
+    <tr>
+        <td>percentual_margem</td>
+        <td>Percentual de lucro desejado.</td>
+        <td>Obrigatório e maior que zero.</td>
+    </tr>
+    <tr>
+        <td>data_inicio</td>
+        <td>Data de início da aplicação da margem.</td>
+        <td>Obrigatório.</td>
+    </tr>
+    <tr>
+        <td>data_fim</td>
+        <td>Data de término da aplicação da margem.</td>
+        <td>Opcional.</td>
+    </tr>
+    <tr>
+        <td>status</td>
+        <td>Indica se a margem está ativa ou inativa.</td>
+        <td>Apenas margens ativas são utilizadas.</td>
+    </tr>
+</table>
+
+<h2>Histórico de Preço</h2>
+<table>
+    <tr>
+        <th>Atributo</th>
+        <th>Descrição</th>
+        <th>Regra</th>
+    </tr>
+    <tr>
+        <td>id_historico (PK)</td>
+        <td>Identificador único do registro de histórico de preço.</td>
+        <td>Obrigatório e único.</td>
+    </tr>
+    <tr>
+        <td>id_pizza_concorrente (FK)</td>
+        <td>Identifica a pizza do concorrente cujo preço foi registrado.</td>
+        <td>Obrigatório.</td>
+    </tr>
+    <tr>
+        <td>preco_praticado</td>
+        <td>Valor do preço praticado pelo concorrente no momento da coleta.</td>
+        <td>Obrigatório e maior que zero.</td>
+    </tr>
+    <tr>
+        <td>data_coleta</td>
+        <td>Data em que o preço da pizza foi coletado ou registrado.</td>
+        <td>Obrigatório.</td>
+    </tr>
+    <tr>
+        <td>fonte</td>
+        <td>Origem da informação utilizada para obter o preço.</td>
+        <td>Obrigatório.</td>
+    </tr>
+</table>
+
+</body>
+</html>
