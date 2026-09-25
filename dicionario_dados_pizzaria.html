@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dicionário de Dados - Sistema de Precificação de Pizzaria</title>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: Arial, Helvetica, sans-serif; background: #f4f6f8; color: #1f2937; }
+  .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
+  header { background: #17365d; color: white; padding: 32px; border-radius: 14px; margin-bottom: 28px; }
+  header h1 { margin: 0 0 10px; font-size: 30px; }
+  header p { margin: 0; line-height: 1.6; opacity: .92; }
+  .entity { background: white; border-radius: 12px; margin: 24px 0; overflow: hidden; box-shadow: 0 3px 12px rgba(0,0,0,.07); }
+  .entity h2 { margin: 0; padding: 16px 20px; background: #eaf1f8; color: #17365d; font-size: 20px; border-left: 6px solid #17365d; }
+  table { width: 100%; border-collapse: collapse; }
+  th, td { padding: 12px 14px; border: 1px solid #d9dee5; text-align: left; vertical-align: top; }
+  th { background: #f0f3f6; color: #26384d; }
+  tr:nth-child(even) td { background: #fafbfc; }
+  .pk { font-weight: bold; color: #8b1e1e; }
+  .fk { font-weight: bold; color: #176b3a; }
+  .note { margin-top: 26px; background: #fff8e6; border-left: 5px solid #d89b00; padding: 18px; border-radius: 8px; line-height: 1.6; }
+  footer { text-align: center; color: #6b7280; padding: 25px 0 10px; font-size: 13px; }
+  @media (max-width: 700px) { header h1 { font-size: 24px; } th, td { font-size: 13px; padding: 9px; } }
+</style>
+</head>
+<body>
+<div class="container">
+<header>
+  <h1>Dicionário de Dados Conceitual (Preliminar)</h1>
+  <p><strong>Sistema de Precificação de Pizzaria</strong></p>
+  <p>Documento com os atributos, descrições e regras de negócio das entidades utilizadas no modelo de dados do sistema.</p>
+</header>
+
+<section class="entity">
+<h2>1. Produto (Pizza)</h2>
+<table><thead><tr><th>Atributo</th><th>Descrição</th><th>Regra de negócio associada</th></tr></thead><tbody>
+<tr><td class="pk">id_produto (PK)</td><td>Identificador único do produto.</td><td>Obrigatório e único.</td></tr>
+<tr><td>nome</td><td>Nome da pizza.</td><td>Obrigatório e descritivo.</td></tr>
+<tr><td>descricao</td><td>Descrição dos ingredientes e características da pizza.</td><td>Opcional.</td></tr>
+<tr><td>categoria</td><td>Categoria da pizza, como tradicional, especial ou doce.</td><td>Obrigatório.</td></tr>
+<tr><td>preco_venda</td><td>Preço de venda atual da pizza.</td><td>Obrigatório e deve ser compatível com os custos e a margem definida.</td></tr>
+<tr><td>status</td><td>Situação do produto, como ativo ou inativo.</td><td>Somente produtos ativos podem ser disponibilizados para venda.</td></tr>
+</tbody></table>
+</section>
+
+<section class="entity">
+<h2>2. Ingrediente</h2>
+<table><thead><tr><th>Atributo</th><th>Descrição</th><th>Regra de negócio associada</th></tr></thead><tbody>
+<tr><td class="pk">id_ingrediente (PK)</td><td>Identificador único do ingrediente.</td><td>Obrigatório e único.</td></tr>
+<tr><td>nome</td><td>Nome do ingrediente.</td><td>Obrigatório.</td></tr>
+<tr><td>unidade_medida</td><td>Unidade utilizada para controlar o ingrediente, como kg, g ou unidade.</td><td>Obrigatório e padronizado.</td></tr>
+<tr><td>custo_unitario</td><td>Custo de uma unidade do ingrediente.</td><td>Obrigatório e maior que zero.</td></tr>
+<tr><td>fornecedor</td><td>Fornecedor principal do ingrediente.</td><td>Opcional.</td></tr>
+<tr><td>data_atualizacao</td><td>Data da última atualização do custo.</td><td>Obrigatório.</td></tr>
+</tbody></table>
+</section>
+
+<section class="entity">
+<h2>3. Item_Receita</h2>
+<table><thead><tr><th>Atributo</th><th>Descrição</th><th>Regra de negócio associada</th></tr></thead><tbody>
+<tr><td class="pk">id_item_receita (PK)</td><td>Identificador único do item da receita.</td><td>Obrigatório e único.</td></tr>
+<tr><td class="fk">id_produto (FK)</td><td>Identifica a pizza à qual o ingrediente pertence.</td><td>Obrigatório e deve referenciar um produto cadastrado.</td></tr>
+<tr><td class="fk">id_ingrediente (FK)</td><td>Identifica o ingrediente utilizado na pizza.</td><td>Obrigatório e deve referenciar um ingrediente cadastrado.</td></tr>
+<tr><td>quantidade</td><td>Quantidade do ingrediente utilizada na receita.</td><td>Obrigatória e maior que zero.</td></tr>
+</tbody></table>
+</section>
+
+<section class="entity">
+<h2>4. Custo_Fixo</h2>
+<table><thead><tr><th>Atributo</th><th>Descrição</th><th>Regra de negócio associada</th></tr></thead><tbody>
+<tr><td class="pk">id_custo_fixo (PK)</td><td>Identificador único do custo fixo.</td><td>Obrigatório e único.</td></tr>
+<tr><td>descricao</td><td>Descrição do custo, como aluguel, salários ou contas.</td><td>Obrigatório.</td></tr>
+<tr><td>valor_mensal</td><td>Valor mensal do custo fixo.</td><td>Obrigatório e maior ou igual a zero.</td></tr>
+<tr><td>data_inicio</td><td>Data de início da consideração do custo.</td><td>Obrigatória.</td></tr>
+<tr><td>data_fim</td><td>Data de encerramento da consideração do custo.</td><td>Opcional.</td></tr>
+<tr><td>status</td><td>Situação do custo, ativo ou inativo.</td><td>Apenas custos ativos entram no cálculo.</td></tr>
+</tbody></table>
+</section>
+
+<section class="entity">
+<h2>5. Margem_Lucro</h2>
+<table><thead><tr><th>Atributo</th><th>Descrição</th><th>Regra de negócio associada</th></tr></thead><tbody>
+<tr><td class="pk">id_margem (PK)</td><td>Identificador único da configuração de margem.</td><td>Obrigatório e único.</td></tr>
+<tr><td>percentual</td><td>Percentual de lucro desejado.</td><td>Obrigatório e deve estar entre 0 e 100.</td></tr>
+<tr><td>descricao</td><td>Descrição ou finalidade da margem.</td><td>Opcional.</td></tr>
+<tr><td>data_inicio</td><td>Data de início da aplicação da margem.</td><td>Obrigatória.</td></tr>
+<tr><td>data_fim</td><td>Data de término da aplicação da margem.</td><td>Opcional.</td></tr>
+<tr><td>status</td><td>Situação da margem, ativa ou inativa.</td><td>Apenas margens ativas são utilizadas.</td></tr>
+</tbody></table>
+</section>
+
+<section class="entity">
+<h2>6. Concorrente</h2>
+<table><thead><tr><th>Atributo</th><th>Descrição</th><th>Regra de negócio associada</th></tr></thead><tbody>
+<tr><td class="pk">id_concorrente (PK)</td><td>Identificador único do concorrente.</td><td>Obrigatório e único.</td></tr>
+<tr><td>nome</td><td>Nome da pizzaria concorrente.</td><td>Obrigatório.</td></tr>
+<tr><td>contato</td><td>Informação de contato do concorrente, quando disponível.</td><td>Opcional.</td></tr>
+<tr><td>endereco</td><td>Localização do concorrente.</td><td>Opcional.</td></tr>
+<tr><td>observacoes</td><td>Informações adicionais sobre o concorrente.</td><td>Opcional.</td></tr>
+</tbody></table>
+</section>
+
+<section class="entity">
+<h2>7. Pizza_Concorrente</h2>
+<table><thead><tr><th>Atributo</th><th>Descrição</th><th>Regra de negócio associada</th></tr></thead><tbody>
+<tr><td class="pk">id_pizza_concorrente (PK)</td><td>Identificador único da pizza do concorrente.</td><td>Obrigatório e único.</td></tr>
+<tr><td class="fk">id_concorrente (FK)</td><td>Identifica o concorrente ao qual a pizza pertence.</td><td>Obrigatório.</td></tr>
+<tr><td>nome_pizza</td><td>Nome da pizza oferecida pelo concorrente.</td><td>Obrigatório.</td></tr>
+<tr><td>preco_praticado</td><td>Preço cobrado pelo concorrente.</td><td>Obrigatório e maior que zero.</td></tr>
+<tr><td>data_coleta</td><td>Data em que o preço foi coletado.</td><td>Obrigatória.</td></tr>
+<tr><td>observacao</td><td>Observações sobre a pizza, tamanho ou condições da oferta.</td><td>Opcional.</td></tr>
+</tbody></table>
+</section>
+
+<section class="entity">
+<h2>8. Cliente</h2>
+<table><thead><tr><th>Atributo</th><th>Descrição</th><th>Regra de negócio associada</th></tr></thead><tbody>
+<tr><td class="pk">id_cliente (PK)</td><td>Identificador único do cliente.</td><td>Obrigatório e único.</td></tr>
+<tr><td>nome</td><td>Nome do cliente.</td><td>Obrigatório.</td></tr>
+<tr><td>telefone</td><td>Telefone de contato do cliente.</td><td>Opcional, conforme a necessidade do cadastro.</td></tr>
+<tr><td>email</td><td>Endereço de e-mail do cliente.</td><td>Opcional e deve possuir formato válido quando informado.</td></tr>
+<tr><td>endereco</td><td>Endereço do cliente.</td><td>Opcional.</td></tr>
+<tr><td>data_cadastro</td><td>Data de cadastro do cliente.</td><td>Obrigatória.</td></tr>
+<tr><td>status</td><td>Situação do cadastro do cliente.</td><td>Permite controlar clientes ativos e inativos.</td></tr>
+</tbody></table>
+</section>
+
+<section class="entity">
+<h2>9. Histórico_de_Venda</h2>
+<table><thead><tr><th>Atributo</th><th>Descrição</th><th>Regra de negócio associada</th></tr></thead><tbody>
+<tr><td class="pk">id_venda (PK)</td><td>Identificador único do registro de venda.</td><td>Obrigatório e único.</td></tr>
+<tr><td class="fk">id_cliente (FK)</td><td>Identifica o cliente que realizou a venda.</td><td>Obrigatório quando a venda estiver vinculada a um cliente cadastrado.</td></tr>
+<tr><td class="fk">id_produto (FK)</td><td>Identifica a pizza vendida.</td><td>Obrigatório e deve referenciar um produto cadastrado.</td></tr>
+<tr><td>data_venda</td><td>Data da realização da venda.</td><td>Obrigatória e válida.</td></tr>
+<tr><td>quantidade</td><td>Quantidade de pizzas vendidas.</td><td>Obrigatória e maior que zero.</td></tr>
+<tr><td>preco_unitario</td><td>Preço de venda de cada unidade no momento da venda.</td><td>Obrigatório.</td></tr>
+<tr><td>valor_total</td><td>Valor total da venda.</td><td>Calculado pela quantidade multiplicada pelo preço unitário.</td></tr>
+</tbody></table>
+</section>
+
+<div class="note">
+<strong>Observações:</strong><br>
+• PK = chave primária, utilizada para identificar unicamente cada registro.<br>
+• FK = chave estrangeira, utilizada para relacionar entidades.<br>
+• Os campos obrigatórios devem ser preenchidos para que o sistema funcione corretamente.<br>
+• Os dados de clientes e demais exemplos utilizados no projeto devem ser fictícios quando apresentados apenas para fins acadêmicos.<br>
+• O modelo foi estruturado para permitir futuras integrações com estoque, fornecedores, pedidos, usuários e relatórios.
+</div>
+
+<footer>Dicionário de Dados — Sistema de Precificação de Pizzaria</footer>
+</div>
+</body>
+</html>
